@@ -7,11 +7,11 @@ export function createBadge(
 	option: MetadataOption | undefined,
 ): HTMLElement {
 	const badgeEl = containerEl.createSpan({
-		cls: `vaultpilot-badge vaultpilot-${kind}`,
+		cls: `statuspilot-badge statuspilot-${kind}`,
 	});
-	badgeEl.setAttr('data-vaultpilot-value', value);
+	badgeEl.setAttr('data-statuspilot-value', value);
 	badgeEl.style.setProperty(
-		'--vaultpilot-badge-color',
+		'--statuspilot-badge-color',
 		option?.color ?? 'var(--text-muted)',
 	);
 	badgeEl.setText(formatOptionLabel(option, value));
@@ -26,7 +26,7 @@ export function createMetadataSelect(
 	onChange: (value: string) => void,
 ): HTMLSelectElement {
 	const selectEl = containerEl.createEl('select', {
-		cls: `vaultpilot-select vaultpilot-${kind}-select`,
+		cls: `statuspilot-select statuspilot-${kind}-select`,
 	});
 	selectEl.setAttr('aria-label', `Set ${kind}`);
 	const values = new Set<string>();

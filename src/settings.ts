@@ -1,10 +1,10 @@
 import { App, Notice, PluginSettingTab, Setting } from 'obsidian';
-import type VaultPilotPlugin from './main';
+import type StatusPilotPlugin from './main';
 import type {
 	MetadataKind,
 	MetadataOption,
 	NotePanelPlacement,
-	VaultPilotSettings,
+	StatusPilotSettings,
 } from './types';
 
 const OPTION_KEYS: Record<
@@ -152,7 +152,7 @@ export const DEFAULT_LEVEL_OPTIONS: MetadataOption[] = [
 	},
 ];
 
-export const DEFAULT_SETTINGS: VaultPilotSettings = {
+export const DEFAULT_SETTINGS: StatusPilotSettings = {
 	enableDashboard: true,
 	enableNotePanel: true,
 	notePanelPlacement: 'sticky-corner',
@@ -170,8 +170,8 @@ export const DEFAULT_SETTINGS: VaultPilotSettings = {
 };
 
 export function normalizeSettings(
-	data: Partial<VaultPilotSettings> | null | undefined,
-): VaultPilotSettings {
+	data: Partial<StatusPilotSettings> | null | undefined,
+): StatusPilotSettings {
 	const statusOptions = normalizeOptions(
 		data?.statusOptions,
 		DEFAULT_STATUS_OPTIONS,
@@ -310,10 +310,10 @@ function cleanFolder(folder: string): string {
 	return folder.trim().replace(/^\/+|\/+$/g, '');
 }
 
-export class VaultPilotSettingTab extends PluginSettingTab {
-	private readonly plugin: VaultPilotPlugin;
+export class StatusPilotSettingTab extends PluginSettingTab {
+	private readonly plugin: StatusPilotPlugin;
 
-	constructor(app: App, plugin: VaultPilotPlugin) {
+	constructor(app: App, plugin: StatusPilotPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
@@ -325,7 +325,7 @@ export class VaultPilotSettingTab extends PluginSettingTab {
 	private renderSettings(): void {
 		const { containerEl } = this;
 		containerEl.empty();
-		containerEl.addClass('vaultpilot-settings');
+		containerEl.addClass('statuspilot-settings');
 
 		this.renderFeatureSettings(containerEl);
 		this.renderDefaultSettings(containerEl);
@@ -510,7 +510,7 @@ export class VaultPilotSettingTab extends PluginSettingTab {
 			);
 
 		const listEl = containerEl.createDiv({
-			cls: 'vaultpilot-settings-list',
+			cls: 'statuspilot-settings-list',
 		});
 		const options = this.getOptions(kind);
 
@@ -526,7 +526,7 @@ export class VaultPilotSettingTab extends PluginSettingTab {
 		index: number,
 	): void {
 		const options = this.getOptions(kind);
-		const rowEl = containerEl.createDiv({ cls: 'vaultpilot-settings-option' });
+		const rowEl = containerEl.createDiv({ cls: 'statuspilot-settings-option' });
 		const title = option.label.length > 0 ? option.label : option.value;
 
 		new Setting(rowEl)

@@ -4,38 +4,38 @@ import {
 	type MetadataKind,
 	type MetadataOption,
 	type MetadataUpdates,
-	type VaultPilotFileMetadata,
-	type VaultPilotRecord,
-	type VaultPilotSettings,
+	type StatusPilotFileMetadata,
+	type StatusPilotRecord,
+	type StatusPilotSettings,
 } from '../types';
 
 type ChangeListener = () => void;
 
 export class MetadataService {
 	private readonly app: App;
-	private settings: VaultPilotSettings;
-	private records: VaultPilotRecord[] = [];
+	private settings: StatusPilotSettings;
+	private records: StatusPilotRecord[] = [];
 	private readonly listeners = new Set<ChangeListener>();
 	private refreshTimer: number | null = null;
 
-	constructor(app: App, settings: VaultPilotSettings) {
+	constructor(app: App, settings: StatusPilotSettings) {
 		this.app = app;
 		this.settings = settings;
 	}
 
-	setSettings(settings: VaultPilotSettings): void {
+	setSettings(settings: StatusPilotSettings): void {
 		this.settings = settings;
 	}
 
-	getRecords(): VaultPilotRecord[] {
+	getRecords(): StatusPilotRecord[] {
 		return [...this.records];
 	}
 
-	getRecord(file: TFile): VaultPilotRecord | undefined {
+	getRecord(file: TFile): StatusPilotRecord | undefined {
 		return this.records.find((record) => record.path === file.path);
 	}
 
-	getFileMetadata(file: TFile): VaultPilotFileMetadata {
+	getFileMetadata(file: TFile): StatusPilotFileMetadata {
 		const record = this.getRecord(file);
 		if (record) {
 			return {
@@ -140,7 +140,7 @@ export class MetadataService {
 			.getMarkdownFiles()
 			.filter((file) => this.shouldIncludeFile(file))
 			.map((file) => this.createRecord(file))
-			.filter((record): record is VaultPilotRecord => record !== null)
+			.filter((record): record is StatusPilotRecord => record !== null)
 			.sort((a, b) => a.path.localeCompare(b.path));
 
 		this.notify();
@@ -152,7 +152,7 @@ export class MetadataService {
 		}
 
 		const existing = this.getFileMetadata(file);
-		const nextMetadata: VaultPilotFileMetadata = {
+		const nextMetadata: StatusPilotFileMetadata = {
 			...existing,
 			status: updates.status ?? existing.status,
 			priority: updates.priority ?? existing.priority,
@@ -197,7 +197,7 @@ export class MetadataService {
 		this.listeners.clear();
 	}
 
-	private createRecord(file: TFile): VaultPilotRecord | null {
+	private createRecord(file: TFile): StatusPilotRecord | null {
 		const metadata = this.getFileMetadata(file);
 
 		return this.createRecordFromMetadata(file, metadata);
@@ -205,8 +205,8 @@ export class MetadataService {
 
 	private createRecordFromMetadata(
 		file: TFile,
-		metadata: VaultPilotFileMetadata,
-	): VaultPilotRecord {
+		metadata: StatusPilotFileMetadata,
+	): StatusPilotRecord {
 		return {
 			file,
 			title: file.basename,
@@ -293,8 +293,8 @@ function pathMatchesFolder(path: string, folder: string): boolean {
 }
 
 export function createDefaultMetadataUpdates(
-	settings: VaultPilotSettings,
-	current: VaultPilotFileMetadata,
+	settings: StatusPilotSettings,
+	current: StatusPilotFileMetadata,
 ): MetadataUpdates {
 	const updates: MetadataUpdates = {};
 

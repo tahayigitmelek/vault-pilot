@@ -1,5 +1,5 @@
 import { ItemView, Menu, setIcon, type WorkspaceLeaf } from 'obsidian';
-import type VaultPilotPlugin from '../main';
+import type StatusPilotPlugin from '../main';
 import { createBadge, formatOptionLabel } from '../ui/components';
 import {
 	type DashboardFilters,
@@ -7,10 +7,10 @@ import {
 	type DashboardPreset,
 	type DashboardSort,
 	type MetadataKind,
-	type VaultPilotRecord,
+	type StatusPilotRecord,
 } from '../types';
 
-export const VAULTPILOT_DASHBOARD_VIEW_TYPE = 'vaultpilot-dashboard-view';
+export const STATUSPILOT_DASHBOARD_VIEW_TYPE = 'statuspilot-dashboard-view';
 
 const DEFAULT_FILTERS: DashboardFilters = {
 	search: '',
@@ -41,24 +41,24 @@ const SORT_OPTIONS: Array<{ value: DashboardSort; label: string }> = [
 ];
 
 export class DashboardView extends ItemView {
-	private readonly plugin: VaultPilotPlugin;
+	private readonly plugin: StatusPilotPlugin;
 	private filters: DashboardFilters = { ...DEFAULT_FILTERS };
 	private hasSubmittedSearch = false;
 	private submittedSearch = '';
 	private unsubscribe: (() => void) | null = null;
 
-	constructor(leaf: WorkspaceLeaf, plugin: VaultPilotPlugin) {
+	constructor(leaf: WorkspaceLeaf, plugin: StatusPilotPlugin) {
 		super(leaf);
 		this.plugin = plugin;
 	}
 
 	getViewType(): string {
-		return VAULTPILOT_DASHBOARD_VIEW_TYPE;
+		return STATUSPILOT_DASHBOARD_VIEW_TYPE;
 	}
 
 	getDisplayText(): string {
 		// eslint-disable-next-line obsidianmd/ui/sentence-case
-		return 'VaultPilot dashboard';
+		return 'StatusPilot dashboard';
 	}
 
 	getIcon(): string {
@@ -90,9 +90,9 @@ export class DashboardView extends ItemView {
 	private render(): void {
 		const { contentEl } = this;
 		contentEl.empty();
-		contentEl.addClass('vaultpilot-dashboard');
+		contentEl.addClass('statuspilot-dashboard');
 
-		const headerEl = contentEl.createDiv({ cls: 'vaultpilot-dashboard-header' });
+		const headerEl = contentEl.createDiv({ cls: 'statuspilot-dashboard-header' });
 		headerEl.createEl('h2', { text: 'Dashboard' });
 
 		const records = this.getFilteredRecords();
@@ -101,7 +101,7 @@ export class DashboardView extends ItemView {
 			? `${records.length} of ${totalRecords} notes`
 			: `${totalRecords} searchable notes`;
 		headerEl.createDiv({
-			cls: 'vaultpilot-dashboard-summary',
+			cls: 'statuspilot-dashboard-summary',
 			text: summaryText,
 		});
 
@@ -110,12 +110,12 @@ export class DashboardView extends ItemView {
 	}
 
 	private renderToolbar(containerEl: HTMLElement): void {
-		const toolbarEl = containerEl.createDiv({ cls: 'vaultpilot-toolbar' });
+		const toolbarEl = containerEl.createDiv({ cls: 'statuspilot-toolbar' });
 
-		const searchEl = toolbarEl.createDiv({ cls: 'vaultpilot-control wide' });
+		const searchEl = toolbarEl.createDiv({ cls: 'statuspilot-control wide' });
 		searchEl.createEl('label', { text: 'Search' });
 		const inputEl = searchEl.createEl('input', {
-			cls: 'vaultpilot-search',
+			cls: 'statuspilot-search',
 		});
 		inputEl.type = 'search';
 		inputEl.value = this.filters.search;
@@ -131,7 +131,7 @@ export class DashboardView extends ItemView {
 		});
 
 		const searchButton = toolbarEl.createEl('button', {
-			cls: 'vaultpilot-search-button',
+			cls: 'statuspilot-search-button',
 		});
 		searchButton.type = 'button';
 		searchButton.setAttr('aria-label', 'Search notes');
@@ -150,7 +150,7 @@ export class DashboardView extends ItemView {
 		this.renderSortFilter(toolbarEl);
 
 		const clearButton = toolbarEl.createEl('button', {
-			cls: 'vaultpilot-icon-button',
+			cls: 'statuspilot-icon-button',
 		});
 		clearButton.setAttr('aria-label', 'Clear filters');
 		clearButton.setAttr('title', 'Clear filters');
@@ -168,7 +168,7 @@ export class DashboardView extends ItemView {
 		kind: MetadataKind,
 		label: string,
 	): void {
-		const controlEl = containerEl.createDiv({ cls: 'vaultpilot-control' });
+		const controlEl = containerEl.createDiv({ cls: 'statuspilot-control' });
 		controlEl.createEl('label', { text: label });
 		const selectEl = controlEl.createEl('select');
 		selectEl.createEl('option', { text: 'All', value: '' });
@@ -188,7 +188,7 @@ export class DashboardView extends ItemView {
 	}
 
 	private renderFolderFilter(containerEl: HTMLElement): void {
-		const controlEl = containerEl.createDiv({ cls: 'vaultpilot-control' });
+		const controlEl = containerEl.createDiv({ cls: 'statuspilot-control' });
 		controlEl.createEl('label', { text: 'Folder' });
 		const selectEl = controlEl.createEl('select');
 		selectEl.createEl('option', { text: 'All', value: '' });
@@ -208,7 +208,7 @@ export class DashboardView extends ItemView {
 	}
 
 	private renderFocusFilter(containerEl: HTMLElement): void {
-		const controlEl = containerEl.createDiv({ cls: 'vaultpilot-control' });
+		const controlEl = containerEl.createDiv({ cls: 'statuspilot-control' });
 		controlEl.createEl('label', { text: 'Focus' });
 		const selectEl = controlEl.createEl('select');
 
@@ -227,7 +227,7 @@ export class DashboardView extends ItemView {
 	}
 
 	private renderSortFilter(containerEl: HTMLElement): void {
-		const controlEl = containerEl.createDiv({ cls: 'vaultpilot-control' });
+		const controlEl = containerEl.createDiv({ cls: 'statuspilot-control' });
 		controlEl.createEl('label', { text: 'Sort' });
 		const selectEl = controlEl.createEl('select');
 
@@ -247,22 +247,22 @@ export class DashboardView extends ItemView {
 
 	private renderTable(
 		containerEl: HTMLElement,
-		records: VaultPilotRecord[],
+		records: StatusPilotRecord[],
 	): void {
 		const tableWrapEl = containerEl.createDiv({
-			cls: 'vaultpilot-table-wrap vaultpilot-card',
+			cls: 'statuspilot-table-wrap statuspilot-card',
 		});
 
 		if (records.length === 0) {
 			tableWrapEl.createDiv({
-				cls: 'vaultpilot-empty',
+				cls: 'statuspilot-empty',
 				text: this.getEmptyStateText(),
 			});
 			return;
 		}
 
 		const tableEl = tableWrapEl.createEl('table', {
-			cls: 'vaultpilot-table',
+			cls: 'statuspilot-table',
 		});
 		const theadEl = tableEl.createEl('thead');
 		const headerRowEl = theadEl.createEl('tr');
@@ -283,11 +283,11 @@ export class DashboardView extends ItemView {
 		}
 	}
 
-	private renderRow(containerEl: HTMLElement, record: VaultPilotRecord): void {
+	private renderRow(containerEl: HTMLElement, record: StatusPilotRecord): void {
 		const rowEl = containerEl.createEl('tr');
 		const titleCell = rowEl.createEl('td');
 		const titleButton = titleCell.createEl('button', {
-			cls: 'vaultpilot-link-button',
+			cls: 'statuspilot-link-button',
 			text: record.title,
 		});
 		titleButton.addEventListener('click', () => {
@@ -299,10 +299,10 @@ export class DashboardView extends ItemView {
 		this.renderEditableCell(rowEl, record, 'level');
 
 		const actionsCell = rowEl.createEl('td', {
-			cls: 'vaultpilot-actions-cell',
+			cls: 'statuspilot-actions-cell',
 		});
 		const openButton = actionsCell.createEl('button', {
-			cls: 'vaultpilot-icon-button vaultpilot-action-button',
+			cls: 'statuspilot-icon-button statuspilot-action-button',
 		});
 		openButton.setAttr('aria-label', `Open ${record.title}`);
 		openButton.setAttr('title', 'Open note');
@@ -312,7 +312,7 @@ export class DashboardView extends ItemView {
 		});
 
 		const fillButton = actionsCell.createEl('button', {
-			cls: 'vaultpilot-icon-button vaultpilot-action-button',
+			cls: 'statuspilot-icon-button statuspilot-action-button',
 		});
 		fillButton.setAttr('aria-label', `Create missing metadata for ${record.title}`);
 		fillButton.setAttr('title', 'Create missing metadata');
@@ -324,26 +324,26 @@ export class DashboardView extends ItemView {
 
 	private renderEditableCell(
 		rowEl: HTMLElement,
-		record: VaultPilotRecord,
+		record: StatusPilotRecord,
 		kind: MetadataKind,
 	): void {
 		const value = record[kind];
 		const cellEl = rowEl.createEl('td');
 		const editEl = cellEl.createDiv({
-			cls: 'vaultpilot-cell-edit',
+			cls: 'statuspilot-cell-edit',
 		});
 		this.createMetadataMenuButton(editEl, record, kind, value);
 	}
 
 	private createMetadataMenuButton(
 		containerEl: HTMLElement,
-		record: VaultPilotRecord,
+		record: StatusPilotRecord,
 		kind: MetadataKind,
 		value: string,
 	): HTMLButtonElement {
 		const option = this.plugin.metadataService.getOption(kind, value);
 		const buttonEl = containerEl.createEl('button', {
-			cls: 'vaultpilot-badge-button',
+			cls: 'statuspilot-badge-button',
 		});
 		buttonEl.type = 'button';
 		buttonEl.setAttr('aria-label', `Change ${kind} for ${record.title}`);
@@ -363,7 +363,7 @@ export class DashboardView extends ItemView {
 	}
 
 	private openMetadataMenu(
-		record: VaultPilotRecord,
+		record: StatusPilotRecord,
 		kind: MetadataKind,
 		currentValue: string,
 		event: MouseEvent,
@@ -386,7 +386,7 @@ export class DashboardView extends ItemView {
 		menu.showAtMouseEvent(event);
 	}
 
-	private getFilteredRecords(): VaultPilotRecord[] {
+	private getFilteredRecords(): StatusPilotRecord[] {
 		if (!this.shouldShowResults()) {
 			return [];
 		}
@@ -409,7 +409,7 @@ export class DashboardView extends ItemView {
 		return 'No notes match the current search.';
 	}
 
-	private matchesFilters(record: VaultPilotRecord): boolean {
+	private matchesFilters(record: StatusPilotRecord): boolean {
 		if (this.filters.status && record.status !== this.filters.status) {
 			return false;
 		}
@@ -433,7 +433,7 @@ export class DashboardView extends ItemView {
 		return this.matchesSearch(record);
 	}
 
-	private matchesFocus(record: VaultPilotRecord): boolean {
+	private matchesFocus(record: StatusPilotRecord): boolean {
 		if (this.filters.focus === 'all') {
 			return true;
 		}
@@ -457,7 +457,7 @@ export class DashboardView extends ItemView {
 		return record.priority === this.plugin.getCriticalPriorityValue();
 	}
 
-	private matchesSearch(record: VaultPilotRecord): boolean {
+	private matchesSearch(record: StatusPilotRecord): boolean {
 		const query = this.submittedSearch.toLowerCase();
 
 		if (query.length === 0) {
@@ -481,7 +481,7 @@ export class DashboardView extends ItemView {
 		return haystack.includes(query);
 	}
 
-	private compareRecords(a: VaultPilotRecord, b: VaultPilotRecord): number {
+	private compareRecords(a: StatusPilotRecord, b: StatusPilotRecord): number {
 		if (this.filters.sort === 'priority-desc') {
 			return (
 				this.rankOption('priority', a.priority, 'desc') -
@@ -543,7 +543,7 @@ export class DashboardView extends ItemView {
 		return direction === 'asc' ? order : -order;
 	}
 
-	private async openFile(record: VaultPilotRecord): Promise<void> {
+	private async openFile(record: StatusPilotRecord): Promise<void> {
 		await this.plugin.app.workspace.getLeaf(true).openFile(record.file);
 	}
 }

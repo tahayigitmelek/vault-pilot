@@ -14,7 +14,7 @@ export interface MetadataOption {
 	icon: string;
 }
 
-export interface VaultPilotSettings {
+export interface StatusPilotSettings {
 	enableDashboard: boolean;
 	enableNotePanel: boolean;
 	notePanelPlacement: NotePanelPlacement;
@@ -31,7 +31,7 @@ export interface VaultPilotSettings {
 	templatesFolder: string;
 }
 
-export interface VaultPilotFileMetadata {
+export interface StatusPilotFileMetadata {
 	status: string;
 	priority: string;
 	level: string;
@@ -40,7 +40,7 @@ export interface VaultPilotFileMetadata {
 	hasLevel: boolean;
 }
 
-export interface VaultPilotRecord extends VaultPilotFileMetadata {
+export interface StatusPilotRecord extends StatusPilotFileMetadata {
 	file: TFile;
 	title: string;
 	path: string;

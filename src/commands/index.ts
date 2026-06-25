@@ -1,11 +1,11 @@
 import { Modal, Notice, TFile } from 'obsidian';
-import type VaultPilotPlugin from '../main';
+import type StatusPilotPlugin from '../main';
 import { createBadge } from '../ui/components';
 import type { MetadataKind, MetadataOption, MetadataUpdates } from '../types';
 
-export function registerCommands(plugin: VaultPilotPlugin): void {
+export function registerCommands(plugin: StatusPilotPlugin): void {
 	plugin.addCommand({
-		id: 'open-vaultpilot-dashboard',
+		id: 'open-statuspilot-dashboard',
 		name: 'Open dashboard',
 		callback: () => {
 			void plugin.openDashboard();
@@ -76,7 +76,7 @@ export function registerCommands(plugin: VaultPilotPlugin): void {
 }
 
 function registerPickerCommand(
-	plugin: VaultPilotPlugin,
+	plugin: StatusPilotPlugin,
 	kind: MetadataKind,
 	id: string,
 	name: string,
@@ -97,11 +97,11 @@ function registerPickerCommand(
 }
 
 class MetadataPickerModal extends Modal {
-	private readonly plugin: VaultPilotPlugin;
+	private readonly plugin: StatusPilotPlugin;
 	private readonly file: TFile;
 	private readonly kind: MetadataKind;
 
-	constructor(plugin: VaultPilotPlugin, file: TFile, kind: MetadataKind) {
+	constructor(plugin: StatusPilotPlugin, file: TFile, kind: MetadataKind) {
 		super(plugin.app);
 		this.plugin = plugin;
 		this.file = file;
@@ -111,10 +111,10 @@ class MetadataPickerModal extends Modal {
 	onOpen(): void {
 		const { contentEl } = this;
 		contentEl.empty();
-		contentEl.addClass('vaultpilot-picker-modal');
+		contentEl.addClass('statuspilot-picker-modal');
 		contentEl.createEl('h2', { text: this.getTitle() });
 
-		const optionListEl = contentEl.createDiv({ cls: 'vaultpilot-picker-list' });
+		const optionListEl = contentEl.createDiv({ cls: 'statuspilot-picker-list' });
 		for (const option of this.plugin.metadataService.getOptions(this.kind)) {
 			this.renderOptionButton(optionListEl, option);
 		}
@@ -129,7 +129,7 @@ class MetadataPickerModal extends Modal {
 		option: MetadataOption,
 	): void {
 		const buttonEl = containerEl.createEl('button', {
-			cls: 'vaultpilot-picker-option',
+			cls: 'statuspilot-picker-option',
 		});
 		createBadge(buttonEl, this.kind, option.value, option);
 		buttonEl.createSpan({ text: option.label });

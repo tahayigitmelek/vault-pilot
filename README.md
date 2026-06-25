@@ -1,6 +1,6 @@
-# VaultPilot
+# StatusPilot
 
-VaultPilot is an Obsidian plugin for managing note workflow metadata directly from YAML frontmatter. It scans your Markdown notes for status, priority, and level fields, providing a dedicated dashboard for filtering, sorting, and quickly updating your workflow states.
+StatusPilot is an Obsidian plugin for managing note workflow metadata directly from YAML frontmatter. It scans your Markdown notes for status, priority, and level fields, providing a dedicated dashboard for filtering, sorting, and quickly updating your workflow states.
 
 ## Features
 
@@ -14,12 +14,12 @@ VaultPilot is an Obsidian plugin for managing note workflow metadata directly fr
 
 ## Usage
 
-- Opening dashboard: Click the ribbon icon on the sidebar or run Open VaultPilot Dashboard from the Command Palette.
+- Opening dashboard: Click the ribbon icon on the sidebar or run Open StatusPilot Dashboard from the Command Palette.
 - Editing frontmatter: Change a note's status, priority, or level using the dropdown menus directly in the dashboard table.
 - Using quick commands: Run commands like Set Status, Mark Current Note as In Progress, or Create Metadata for Current Note directly from the active editor.
 - Isolating critical work: Use instant commands like Show Ready-to-Start Notes or Show Critical Notes to jump straight to filtered views.
-- Configuring rules: Open Settings > Community plugins > VaultPilot to customize badge styles, default values, and folder inclusion/exclusion rules.
+- Configuring rules: Open Settings > Community plugins > StatusPilot to customize badge styles, default values, and folder inclusion/exclusion rules.
 
 ## Privacy
 
-VaultPilot operates entirely locally and offline within your Obsidian vault. It does not make any external network requests or collect telemetry. All metadata and settings are stored locally in your Markdown files and standard Obsidian plugin data.
+StatusPilot operates entirely locally and offline within your Obsidian vault. It does not make any external network requests or collect telemetry. All metadata and settings are stored locally in your Markdown files and standard Obsidian plugin data.

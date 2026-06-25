@@ -1,5 +1,5 @@
 {
-	"name": "vault-pilot",
+	"name": "status-pilot",
 	"version": "1.0.0",
 	"description": "Configurable status, priority, and level dashboard for Obsidian notes.",
 	"main": "main.js",

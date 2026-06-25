@@ -8,22 +8,22 @@ import {
 } from './metadata/metadataService';
 import {
 	DEFAULT_SETTINGS,
-	VaultPilotSettingTab,
+	StatusPilotSettingTab,
 	normalizeSettings,
 } from './settings';
 import {
 	DashboardView,
-	VAULTPILOT_DASHBOARD_VIEW_TYPE,
+	STATUSPILOT_DASHBOARD_VIEW_TYPE,
 } from './views/dashboardView';
 import { registerNotePanel } from './views/notePanel';
 import type {
 	DashboardPreset,
 	MetadataUpdates,
-	VaultPilotSettings,
+	StatusPilotSettings,
 } from './types';
 
-export default class VaultPilotPlugin extends Plugin {
-	settings!: VaultPilotSettings;
+export default class StatusPilotPlugin extends Plugin {
+	settings!: StatusPilotSettings;
 	metadataService!: MetadataService;
 
 	async onload(): Promise<void> {
@@ -31,7 +31,7 @@ export default class VaultPilotPlugin extends Plugin {
 
 		this.metadataService = new MetadataService(this.app, this.settings);
 		this.registerView(
-			VAULTPILOT_DASHBOARD_VIEW_TYPE,
+			STATUSPILOT_DASHBOARD_VIEW_TYPE,
 			(leaf) => new DashboardView(leaf, this),
 		);
 
@@ -42,7 +42,7 @@ export default class VaultPilotPlugin extends Plugin {
 		registerCommands(this);
 		registerNotePanel(this);
 		this.registerMetadataEvents();
-		this.addSettingTab(new VaultPilotSettingTab(this.app, this));
+		this.addSettingTab(new StatusPilotSettingTab(this.app, this));
 		this.updateBadgeStylingClass();
 
 		await this.metadataService.refresh();
@@ -50,13 +50,13 @@ export default class VaultPilotPlugin extends Plugin {
 
 	onunload(): void {
 		this.metadataService?.dispose();
-		activeDocument.body.classList.remove('vaultpilot-active');
-		activeDocument.body.classList.remove('vaultpilot-badges-enabled');
+		activeDocument.body.classList.remove('statuspilot-active');
+		activeDocument.body.classList.remove('statuspilot-badges-enabled');
 	}
 
 	async loadSettings(): Promise<void> {
 		this.settings = normalizeSettings(
-			((await this.loadData()) as Partial<VaultPilotSettings> | null) ??
+			((await this.loadData()) as Partial<StatusPilotSettings> | null) ??
 				DEFAULT_SETTINGS,
 		);
 	}
@@ -76,7 +76,7 @@ export default class VaultPilotPlugin extends Plugin {
 		}
 
 		let leaf =
-			this.app.workspace.getLeavesOfType(VAULTPILOT_DASHBOARD_VIEW_TYPE)[0] ??
+			this.app.workspace.getLeavesOfType(STATUSPILOT_DASHBOARD_VIEW_TYPE)[0] ??
 			null;
 
 		if (!leaf) {
@@ -89,7 +89,7 @@ export default class VaultPilotPlugin extends Plugin {
 		}
 
 		await leaf.setViewState({
-			type: VAULTPILOT_DASHBOARD_VIEW_TYPE,
+			type: STATUSPILOT_DASHBOARD_VIEW_TYPE,
 			active: true,
 		});
 
@@ -135,7 +135,7 @@ export default class VaultPilotPlugin extends Plugin {
 			this.metadataService.applyLocalUpdate(file, updates);
 			this.metadataService.scheduleRefresh();
 		} catch (error) {
-			console.error('VaultPilot failed to update metadata', error);
+			console.error('StatusPilot failed to update metadata', error);
 			new Notice('Could not update note metadata.');
 		}
 	}
@@ -235,9 +235,9 @@ export default class VaultPilotPlugin extends Plugin {
 	}
 
 	private updateBadgeStylingClass(): void {
-		activeDocument.body.classList.add('vaultpilot-active');
+		activeDocument.body.classList.add('statuspilot-active');
 		activeDocument.body.classList.toggle(
-			'vaultpilot-badges-enabled',
+			'statuspilot-badges-enabled',
 			this.settings.enableBadgeStyling,
 		);
 	}

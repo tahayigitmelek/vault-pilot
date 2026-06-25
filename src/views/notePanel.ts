@@ -1,13 +1,13 @@
 import { MarkdownView, Menu, TFile } from 'obsidian';
-import type VaultPilotPlugin from '../main';
+import type StatusPilotPlugin from '../main';
 import { createBadge, formatOptionLabel } from '../ui/components';
 import type { MetadataKind, MetadataOption } from '../types';
 
-const INLINE_PANEL_CLASS = 'vaultpilot-inline-note-panel';
-const HIDDEN_PROPERTIES_CLASS = 'vaultpilot-hidden-properties-container';
-const VAULTPILOT_PROPERTY_KEYS = new Set(['status', 'priority', 'level']);
+const INLINE_PANEL_CLASS = 'statuspilot-inline-note-panel';
+const HIDDEN_PROPERTIES_CLASS = 'statuspilot-hidden-properties-container';
+const STATUSPILOT_PROPERTY_KEYS = new Set(['status', 'priority', 'level']);
 
-export function registerNotePanel(plugin: VaultPilotPlugin): void {
+export function registerNotePanel(plugin: StatusPilotPlugin): void {
 	let refreshTimer: number | null = null;
 	const scheduleRefresh = () => {
 		if (refreshTimer !== null) {
@@ -39,7 +39,7 @@ export function registerNotePanel(plugin: VaultPilotPlugin): void {
 	scheduleRefresh();
 }
 
-function refreshInlineNotePanels(plugin: VaultPilotPlugin): void {
+function refreshInlineNotePanels(plugin: StatusPilotPlugin): void {
 	if (!plugin.settings.enableNotePanel) {
 		removeInlineNotePanels();
 		return;
@@ -88,7 +88,7 @@ function ensureInlinePanel(view: MarkdownView): HTMLElement {
 	}
 
 	const panelEl = hostEl.createDiv({
-		cls: `vaultpilot-note-panel ${INLINE_PANEL_CLASS}`,
+		cls: `statuspilot-note-panel ${INLINE_PANEL_CLASS}`,
 	});
 	hostEl.prepend(panelEl);
 
@@ -96,12 +96,12 @@ function ensureInlinePanel(view: MarkdownView): HTMLElement {
 }
 
 function applyPanelPlacement(
-	plugin: VaultPilotPlugin,
+	plugin: StatusPilotPlugin,
 	panelEl: HTMLElement,
 ): void {
 	const sticky = plugin.settings.notePanelPlacement === 'sticky-corner';
-	panelEl.classList.toggle('vaultpilot-note-panel-sticky-corner', sticky);
-	panelEl.classList.toggle('vaultpilot-note-panel-top', !sticky);
+	panelEl.classList.toggle('statuspilot-note-panel-sticky-corner', sticky);
+	panelEl.classList.toggle('statuspilot-note-panel-top', !sticky);
 }
 
 function getPanelHost(contentEl: HTMLElement): HTMLElement {
@@ -142,27 +142,27 @@ function syncPropertiesVisibility(contentEl: HTMLElement): void {
 		const properties = Array.from(
 			containerEl.querySelectorAll<HTMLElement>('.metadata-property'),
 		);
-		const nonVaultPilotProperties = properties.filter((propertyEl) => {
+		const nonStatusPilotProperties = properties.filter((propertyEl) => {
 			const key = propertyEl.getAttribute('data-property-key');
-			return key !== null && !VAULTPILOT_PROPERTY_KEYS.has(key);
+			return key !== null && !STATUSPILOT_PROPERTY_KEYS.has(key);
 		});
 
 		containerEl.classList.toggle(
 			HIDDEN_PROPERTIES_CLASS,
-			properties.length > 0 && nonVaultPilotProperties.length === 0,
+			properties.length > 0 && nonStatusPilotProperties.length === 0,
 		);
 	}
 }
 
 function renderNotePanel(
-	plugin: VaultPilotPlugin,
+	plugin: StatusPilotPlugin,
 	containerEl: HTMLElement,
 	file: TFile,
 ): void {
 	containerEl.empty();
 
 	const controlsEl = containerEl.createDiv({
-		cls: 'vaultpilot-note-panel-controls',
+		cls: 'statuspilot-note-panel-controls',
 	});
 	renderPriorityControl(plugin, controlsEl, file);
 	renderPanelControl(plugin, controlsEl, file, 'status', 'Status');
@@ -170,7 +170,7 @@ function renderNotePanel(
 }
 
 function renderPriorityControl(
-	plugin: VaultPilotPlugin,
+	plugin: StatusPilotPlugin,
 	containerEl: HTMLElement,
 	file: TFile,
 ): void {
@@ -178,18 +178,18 @@ function renderPriorityControl(
 	const value = metadata.priority;
 	const option = plugin.metadataService.getOption('priority', value);
 	const priorityEl = containerEl.createDiv({
-		cls: 'vaultpilot-priority-panel',
+		cls: 'statuspilot-priority-panel',
 	});
 	priorityEl.style.setProperty(
-		'--vaultpilot-priority-color',
+		'--statuspilot-priority-color',
 		option?.color ?? 'var(--interactive-accent)',
 	);
 
-	const summaryEl = priorityEl.createDiv({ cls: 'vaultpilot-priority-summary' });
-	summaryEl.createDiv({ cls: 'vaultpilot-priority-kicker', text: 'Priority' });
+	const summaryEl = priorityEl.createDiv({ cls: 'statuspilot-priority-summary' });
+	summaryEl.createDiv({ cls: 'statuspilot-priority-kicker', text: 'Priority' });
 	createMetadataMenuButton(plugin, summaryEl, file, 'priority', value);
 
-	const meterEl = priorityEl.createDiv({ cls: 'vaultpilot-priority-meter' });
+	const meterEl = priorityEl.createDiv({ cls: 'statuspilot-priority-meter' });
 	renderPriorityMeter(
 		meterEl,
 		plugin.metadataService.getOptions('priority'),
@@ -198,7 +198,7 @@ function renderPriorityControl(
 }
 
 function renderPanelControl(
-	plugin: VaultPilotPlugin,
+	plugin: StatusPilotPlugin,
 	containerEl: HTMLElement,
 	file: TFile,
 	kind: MetadataKind,
@@ -206,15 +206,15 @@ function renderPanelControl(
 ): void {
 	const metadata = plugin.metadataService.getFileMetadata(file);
 	const value = metadata[kind];
-	const controlEl = containerEl.createDiv({ cls: 'vaultpilot-note-panel-control' });
+	const controlEl = containerEl.createDiv({ cls: 'statuspilot-note-panel-control' });
 	controlEl.createEl('label', { text: label });
 
-	const rowEl = controlEl.createDiv({ cls: 'vaultpilot-note-panel-row' });
+	const rowEl = controlEl.createDiv({ cls: 'statuspilot-note-panel-row' });
 	createMetadataMenuButton(plugin, rowEl, file, kind, value);
 }
 
 function createMetadataMenuButton(
-	plugin: VaultPilotPlugin,
+	plugin: StatusPilotPlugin,
 	containerEl: HTMLElement,
 	file: TFile,
 	kind: MetadataKind,
@@ -222,7 +222,7 @@ function createMetadataMenuButton(
 ): HTMLButtonElement {
 	const option = plugin.metadataService.getOption(kind, value);
 	const buttonEl = containerEl.createEl('button', {
-		cls: 'vaultpilot-badge-button',
+		cls: 'statuspilot-badge-button',
 	});
 	buttonEl.type = 'button';
 	buttonEl.setAttr('aria-label', `Change ${kind}`);
@@ -236,7 +236,7 @@ function createMetadataMenuButton(
 }
 
 function openMetadataMenu(
-	plugin: VaultPilotPlugin,
+	plugin: StatusPilotPlugin,
 	file: TFile,
 	kind: MetadataKind,
 	currentValue: string,
@@ -268,13 +268,13 @@ function renderPriorityMeter(
 	const activeCount = activeIndex === -1 ? 0 : activeIndex + 1;
 	const segmentCount = Math.max(visibleOptions.length, 1);
 	containerEl.style.setProperty(
-		'--vaultpilot-priority-segment-count',
+		'--statuspilot-priority-segment-count',
 		String(segmentCount),
 	);
 
 	for (let index = 0; index < segmentCount; index += 1) {
 		const segmentEl = containerEl.createSpan({
-			cls: 'vaultpilot-priority-segment',
+			cls: 'statuspilot-priority-segment',
 		});
 		segmentEl.classList.toggle('is-active', index < activeCount);
 	}

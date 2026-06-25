@@ -1,30 +1,30 @@
 /* ───────────────────────────────────────────────
-   VaultPilot — Modern & Minimal UI
+   StatusPilot — Modern & Minimal UI
    ─────────────────────────────────────────────── */
 
 /* === Base reset === */
 
-.vaultpilot-dashboard,
-.vaultpilot-settings,
-.vaultpilot-picker-modal {
+.statuspilot-dashboard,
+.statuspilot-settings,
+.statuspilot-picker-modal {
 	color: var(--text-normal);
 }
 
 /* Hide raw properties when the note-panel is active */
 
-body.vaultpilot-active .metadata-property[data-property-key="status"],
-body.vaultpilot-active .metadata-property[data-property-key="priority"],
-body.vaultpilot-active .metadata-property[data-property-key="level"] {
+body.statuspilot-active .metadata-property[data-property-key="status"],
+body.statuspilot-active .metadata-property[data-property-key="priority"],
+body.statuspilot-active .metadata-property[data-property-key="level"] {
 	display: none;
 }
 
-body.vaultpilot-active .vaultpilot-hidden-properties-container {
+body.statuspilot-active .statuspilot-hidden-properties-container {
 	display: none;
 }
 
 /* ─── Dashboard layout ─── */
 
-.vaultpilot-dashboard {
+.statuspilot-dashboard {
 	container-type: inline-size;
 	display: flex;
 	flex-direction: column;
@@ -34,7 +34,7 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 	padding: 20px;
 }
 
-.vaultpilot-dashboard-header {
+.statuspilot-dashboard-header {
 	align-items: baseline;
 	display: flex;
 	flex-wrap: wrap;
@@ -42,7 +42,7 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 	justify-content: space-between;
 }
 
-.vaultpilot-dashboard-header h2 {
+.statuspilot-dashboard-header h2 {
 	font-size: var(--font-ui-large);
 	font-weight: 700;
 	letter-spacing: -0.01em;
@@ -50,7 +50,7 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 	margin: 0;
 }
 
-.vaultpilot-dashboard-summary {
+.statuspilot-dashboard-summary {
 	color: var(--text-faint);
 	font-size: var(--font-ui-small);
 	font-weight: 500;
@@ -58,26 +58,26 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 
 /* ─── Toolbar ─── */
 
-.vaultpilot-toolbar {
+.statuspilot-toolbar {
 	align-items: end;
 	display: grid;
 	gap: 10px;
 	grid-template-columns: minmax(180px, 2fr) auto repeat(6, minmax(120px, 1fr)) auto;
 }
 
-.vaultpilot-control {
+.statuspilot-control {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
 	min-width: 0;
 }
 
-.vaultpilot-control.wide {
+.statuspilot-control.wide {
 	min-width: 180px;
 }
 
-.vaultpilot-control label,
-.vaultpilot-note-panel-control label {
+.statuspilot-control label,
+.statuspilot-note-panel-control label {
 	color: var(--text-faint);
 	font-size: var(--font-ui-smaller);
 	font-weight: 600;
@@ -85,9 +85,9 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 	text-transform: uppercase;
 }
 
-.vaultpilot-control input,
-.vaultpilot-control select,
-.vaultpilot-select {
+.statuspilot-control input,
+.statuspilot-control select,
+.statuspilot-select {
 	background: var(--background-primary);
 	border: 1px solid var(--background-modifier-border);
 	border-radius: 8px;
@@ -100,9 +100,9 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 	width: 100%;
 }
 
-.vaultpilot-control input:focus,
-.vaultpilot-control select:focus,
-.vaultpilot-select:focus {
+.statuspilot-control input:focus,
+.statuspilot-control select:focus,
+.statuspilot-select:focus {
 	border-color: var(--interactive-accent);
 	box-shadow: 0 0 0 2px color-mix(in srgb, var(--interactive-accent) 18%, transparent);
 	outline: none;
@@ -110,9 +110,9 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 
 /* ─── Buttons ─── */
 
-.vaultpilot-icon-button,
-.vaultpilot-link-button,
-.vaultpilot-picker-option {
+.statuspilot-icon-button,
+.statuspilot-link-button,
+.statuspilot-picker-option {
 	background: transparent;
 	border: 1px solid transparent;
 	color: var(--text-normal);
@@ -121,7 +121,7 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 	transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
 }
 
-.vaultpilot-icon-button {
+.statuspilot-icon-button {
 	align-items: center;
 	border-radius: 8px;
 	display: inline-flex;
@@ -130,7 +130,7 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 	width: 34px;
 }
 
-.vaultpilot-search-button {
+.statuspilot-search-button {
 	align-items: center;
 	background: var(--interactive-accent);
 	border: 1px solid var(--interactive-accent);
@@ -149,29 +149,29 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 	white-space: nowrap;
 }
 
-.vaultpilot-search-button:hover,
-.vaultpilot-search-button:focus-visible {
+.statuspilot-search-button:hover,
+.statuspilot-search-button:focus-visible {
 	background: var(--interactive-accent-hover);
 	border-color: var(--interactive-accent-hover);
 	outline: none;
 }
 
-.vaultpilot-search-button:active {
+.statuspilot-search-button:active {
 	transform: scale(0.97);
 }
 
-.vaultpilot-icon-button:hover,
-.vaultpilot-link-button:hover,
-.vaultpilot-picker-option:hover {
+.statuspilot-icon-button:hover,
+.statuspilot-link-button:hover,
+.statuspilot-picker-option:hover {
 	background: var(--background-modifier-hover);
 	border-color: var(--background-modifier-border);
 }
 
-.vaultpilot-icon-button:active {
+.statuspilot-icon-button:active {
 	transform: scale(0.95);
 }
 
-.vaultpilot-link-button {
+.statuspilot-link-button {
 	border-radius: 6px;
 	color: var(--link-color);
 	font-weight: 600;
@@ -181,7 +181,7 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 	text-align: left;
 }
 
-.vaultpilot-link-button:hover {
+.statuspilot-link-button:hover {
 	color: var(--link-color-hover, var(--link-color));
 	text-decoration: underline;
 	text-underline-offset: 2px;
@@ -189,7 +189,7 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 
 /* ─── Card ─── */
 
-.vaultpilot-card {
+.statuspilot-card {
 	background: var(--background-primary);
 	border: 1px solid var(--background-modifier-border);
 	border-radius: 10px;
@@ -198,28 +198,28 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 
 /* ─── Table ─── */
 
-.vaultpilot-table-wrap {
+.statuspilot-table-wrap {
 	flex: 1;
 	min-height: 0;
 	overflow: auto;
 }
 
-.vaultpilot-table {
+.statuspilot-table {
 	border-collapse: collapse;
 	font-size: var(--font-ui-smaller);
 	min-width: 700px;
 	width: 100%;
 }
 
-.vaultpilot-table th,
-.vaultpilot-table td {
+.statuspilot-table th,
+.statuspilot-table td {
 	border-bottom: 1px solid color-mix(in srgb, var(--background-modifier-border) 60%, transparent);
 	padding: 6px 8px;
 	text-align: left;
 	vertical-align: middle;
 }
 
-.vaultpilot-table th {
+.statuspilot-table th {
 	background: var(--background-secondary);
 	color: var(--text-faint);
 	font-size: var(--font-ui-smaller);
@@ -231,33 +231,33 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 	z-index: 1;
 }
 
-.vaultpilot-table tbody tr {
+.statuspilot-table tbody tr {
 	transition: background 0.1s ease;
 }
 
-.vaultpilot-table tbody tr:hover {
+.statuspilot-table tbody tr:hover {
 	background: color-mix(in srgb, var(--background-modifier-hover) 50%, transparent);
 }
 
-.vaultpilot-table tbody tr:last-child td {
+.statuspilot-table tbody tr:last-child td {
 	border-bottom: none;
 }
 
-.vaultpilot-cell-edit {
+.statuspilot-cell-edit {
 	align-items: center;
 	display: flex;
 	gap: 0;
 }
 
-.vaultpilot-actions-cell {
+.statuspilot-actions-cell {
 	white-space: nowrap;
 }
 
-.vaultpilot-actions-cell .vaultpilot-icon-button + .vaultpilot-icon-button {
+.statuspilot-actions-cell .statuspilot-icon-button + .statuspilot-icon-button {
 	margin-left: 4px;
 }
 
-.vaultpilot-action-button {
+.statuspilot-action-button {
 	background: transparent;
 	border-color: transparent;
 	border-radius: 6px;
@@ -267,43 +267,43 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 	width: 24px;
 }
 
-.vaultpilot-action-button:hover,
-.vaultpilot-action-button:focus-visible {
+.statuspilot-action-button:hover,
+.statuspilot-action-button:focus-visible {
 	background: var(--background-modifier-hover);
 	border-color: transparent;
 	color: var(--text-normal);
 }
 
-.vaultpilot-action-button .svg-icon {
+.statuspilot-action-button .svg-icon {
 	display: block;
 	height: 16px;
 	stroke-width: 2.25;
 	width: 16px;
 }
 
-.vaultpilot-dashboard .vaultpilot-icon-button {
+.statuspilot-dashboard .statuspilot-icon-button {
 	height: 24px;
 	width: 24px;
 }
 
-.vaultpilot-dashboard .vaultpilot-badge {
+.statuspilot-dashboard .statuspilot-badge {
 	font-size: var(--font-ui-smaller);
 	min-height: 20px;
 	padding: 1px 7px;
 }
 
-.vaultpilot-badge.vaultpilot-priority {
+.statuspilot-badge.statuspilot-priority {
 	padding-left: 10px;
 }
 
-.vaultpilot-dashboard .vaultpilot-empty {
+.statuspilot-dashboard .statuspilot-empty {
 	padding: 18px 16px;
 }
 
 /* ─── Badge ─── */
 
-.vaultpilot-badge {
-	--vaultpilot-badge-color: var(--text-muted);
+.statuspilot-badge {
+	--statuspilot-badge-color: var(--text-muted);
 	align-items: center;
 	background: color-mix(in srgb, var(--background-modifier-hover) 60%, transparent);
 	border: 1px solid color-mix(in srgb, var(--background-modifier-border) 50%, transparent);
@@ -325,23 +325,23 @@ body.vaultpilot-active .vaultpilot-hidden-properties-container {
 	white-space: nowrap;
 }
 
-body.vaultpilot-badges-enabled .vaultpilot-badge {
+body.statuspilot-badges-enabled .statuspilot-badge {
 	background: color-mix(
 		in srgb,
-		var(--vaultpilot-badge-color) 12%,
+		var(--statuspilot-badge-color) 12%,
 		var(--background-primary)
 	);
 	border-color: color-mix(
 		in srgb,
-		var(--vaultpilot-badge-color) 24%,
+		var(--statuspilot-badge-color) 24%,
 		transparent
 	);
-	color: color-mix(in srgb, var(--vaultpilot-badge-color) 80%, var(--text-normal));
+	color: color-mix(in srgb, var(--statuspilot-badge-color) 80%, var(--text-normal));
 }
 
 /* ─── Empty state ─── */
 
-.vaultpilot-empty {
+.statuspilot-empty {
 	color: var(--text-faint);
 	font-size: var(--font-ui-small);
 	padding: 40px 24px;
@@ -350,7 +350,7 @@ body.vaultpilot-badges-enabled .vaultpilot-badge {
 
 /* ─── Note panel (inline, above the editor) ─── */
 
-.vaultpilot-note-panel {
+.statuspilot-note-panel {
 	background: transparent;
 	border: 0;
 	border-radius: 0;
@@ -361,7 +361,7 @@ body.vaultpilot-badges-enabled .vaultpilot-badge {
 	padding: 4px 0;
 }
 
-.vaultpilot-inline-note-panel {
+.statuspilot-inline-note-panel {
 	align-self: stretch;
 	box-sizing: border-box;
 	container-type: inline-size;
@@ -372,7 +372,7 @@ body.vaultpilot-badges-enabled .vaultpilot-badge {
 	z-index: 2;
 }
 
-.vaultpilot-note-panel-sticky-corner {
+.statuspilot-note-panel-sticky-corner {
 	align-self: flex-end;
 	backdrop-filter: blur(12px);
 	background: color-mix(in srgb, var(--background-primary) 88%, transparent);
@@ -389,19 +389,19 @@ body.vaultpilot-badges-enabled .vaultpilot-badge {
 	z-index: 20;
 }
 
-.vaultpilot-note-panel-sticky-corner .vaultpilot-note-panel-controls {
+.statuspilot-note-panel-sticky-corner .statuspilot-note-panel-controls {
 	align-items: stretch;
 	flex-wrap: nowrap;
 	gap: 3px;
 	justify-content: flex-end;
 }
 
-.vaultpilot-note-panel-sticky-corner .vaultpilot-note-panel-control label,
-.vaultpilot-note-panel-sticky-corner .vaultpilot-priority-kicker {
+.statuspilot-note-panel-sticky-corner .statuspilot-note-panel-control label,
+.statuspilot-note-panel-sticky-corner .statuspilot-priority-kicker {
 	display: none;
 }
 
-.vaultpilot-note-panel-sticky-corner .vaultpilot-note-panel-control {
+.statuspilot-note-panel-sticky-corner .statuspilot-note-panel-control {
 	align-items: center;
 	background: color-mix(in srgb, var(--background-secondary) 68%, transparent);
 	border: 1px solid color-mix(in srgb, var(--background-modifier-border) 60%, transparent);
@@ -410,9 +410,9 @@ body.vaultpilot-badges-enabled .vaultpilot-badge {
 	padding: 2px;
 }
 
-.vaultpilot-note-panel-sticky-corner .vaultpilot-priority-panel {
-	background: color-mix(in srgb, var(--vaultpilot-priority-color) 8%, var(--background-secondary));
-	border: 1px solid color-mix(in srgb, var(--vaultpilot-priority-color) 22%, var(--background-modifier-border));
+.statuspilot-note-panel-sticky-corner .statuspilot-priority-panel {
+	background: color-mix(in srgb, var(--statuspilot-priority-color) 8%, var(--background-secondary));
+	border: 1px solid color-mix(in srgb, var(--statuspilot-priority-color) 22%, var(--background-modifier-border));
 	border-radius: 7px;
 	display: flex;
 	gap: 7px;
@@ -420,12 +420,12 @@ body.vaultpilot-badges-enabled .vaultpilot-badge {
 	padding: 2px 7px;
 }
 
-.vaultpilot-note-panel-sticky-corner .vaultpilot-priority-meter {
+.statuspilot-note-panel-sticky-corner .statuspilot-priority-meter {
 	align-self: center;
 	width: 34px;
 }
 
-.vaultpilot-note-panel-sticky-corner .vaultpilot-badge {
+.statuspilot-note-panel-sticky-corner .statuspilot-badge {
 	background: transparent;
 	border: 0;
 	border-radius: 6px;
@@ -437,7 +437,7 @@ body.vaultpilot-badges-enabled .vaultpilot-badge {
 	white-space: nowrap;
 }
 
-.vaultpilot-note-panel-title {
+.statuspilot-note-panel-title {
 	color: var(--text-faint);
 	font-size: var(--font-ui-smaller);
 	font-weight: 700;
@@ -445,7 +445,7 @@ body.vaultpilot-badges-enabled .vaultpilot-badge {
 	text-transform: uppercase;
 }
 
-.vaultpilot-note-panel-controls {
+.statuspilot-note-panel-controls {
 	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
@@ -454,21 +454,21 @@ body.vaultpilot-badges-enabled .vaultpilot-badge {
 
 /* ─── Priority panel ─── */
 
-.vaultpilot-priority-panel {
-	--vaultpilot-priority-color: var(--interactive-accent);
+.statuspilot-priority-panel {
+	--statuspilot-priority-color: var(--interactive-accent);
 	align-items: center;
 	background: color-mix(
 		in srgb,
-		var(--vaultpilot-priority-color) 5%,
+		var(--statuspilot-priority-color) 5%,
 		transparent
 	);
 	border: 1px solid
 		color-mix(
 			in srgb,
-			var(--vaultpilot-priority-color) 28%,
+			var(--statuspilot-priority-color) 28%,
 			transparent
 		);
-	border-left: 3px solid var(--vaultpilot-priority-color);
+	border-left: 3px solid var(--statuspilot-priority-color);
 	border-radius: 8px;
 	display: grid;
 	gap: 6px;
@@ -478,7 +478,7 @@ body.vaultpilot-badges-enabled .vaultpilot-badge {
 	transition: background 0.15s ease, border-color 0.15s ease;
 }
 
-.vaultpilot-priority-summary {
+.statuspilot-priority-summary {
 	align-items: center;
 	display: flex;
 	gap: 6px;
@@ -487,7 +487,7 @@ body.vaultpilot-badges-enabled .vaultpilot-badge {
 
 /* ─── Badge button ─── */
 
-button.vaultpilot-badge-button {
+button.statuspilot-badge-button {
 	appearance: none;
 	align-items: center;
 	background: transparent !important;
@@ -509,27 +509,27 @@ button.vaultpilot-badge-button {
 	width: auto;
 }
 
-button.vaultpilot-badge-button:hover,
-button.vaultpilot-badge-button:focus,
-button.vaultpilot-badge-button:focus-visible,
-button.vaultpilot-badge-button:active {
+button.statuspilot-badge-button:hover,
+button.statuspilot-badge-button:focus,
+button.statuspilot-badge-button:focus-visible,
+button.statuspilot-badge-button:active {
 	background: transparent !important;
 	box-shadow: none !important;
 	outline: none;
 }
 
-.vaultpilot-badge-button:hover .vaultpilot-badge,
-.vaultpilot-badge-button:focus-visible .vaultpilot-badge {
-	background: color-mix(in srgb, var(--vaultpilot-badge-color) 10%, transparent);
-	border-color: color-mix(in srgb, var(--vaultpilot-badge-color) 34%, transparent);
-	box-shadow: 0 0 0 2px color-mix(in srgb, var(--vaultpilot-badge-color) 12%, transparent);
+.statuspilot-badge-button:hover .statuspilot-badge,
+.statuspilot-badge-button:focus-visible .statuspilot-badge {
+	background: color-mix(in srgb, var(--statuspilot-badge-color) 10%, transparent);
+	border-color: color-mix(in srgb, var(--statuspilot-badge-color) 34%, transparent);
+	box-shadow: 0 0 0 2px color-mix(in srgb, var(--statuspilot-badge-color) 12%, transparent);
 }
 
-.vaultpilot-priority-panel .vaultpilot-badge-button:hover .vaultpilot-badge,
-.vaultpilot-priority-panel .vaultpilot-badge-button:focus-visible .vaultpilot-badge {
+.statuspilot-priority-panel .statuspilot-badge-button:hover .statuspilot-badge,
+.statuspilot-priority-panel .statuspilot-badge-button:focus-visible .statuspilot-badge {
 	background: color-mix(
 		in srgb,
-		var(--vaultpilot-priority-color) 10%,
+		var(--statuspilot-priority-color) 10%,
 		transparent
 	);
 	border-color: transparent;
@@ -537,21 +537,21 @@ button.vaultpilot-badge-button:active {
 
 /* Badge size overrides inside panels */
 
-.vaultpilot-note-panel .vaultpilot-badge {
+.statuspilot-note-panel .statuspilot-badge {
 	font-size: var(--font-ui-smaller);
 	min-height: 22px;
 	padding: 2px 8px;
 }
 
-.vaultpilot-priority-panel .vaultpilot-badge {
+.statuspilot-priority-panel .statuspilot-badge {
 	background: transparent;
 	border-color: transparent;
-	color: color-mix(in srgb, var(--vaultpilot-priority-color) 82%, var(--text-normal));
+	color: color-mix(in srgb, var(--statuspilot-priority-color) 82%, var(--text-normal));
 	padding-left: 0;
 }
 
-.vaultpilot-note-panel-sticky-corner .vaultpilot-priority-panel .vaultpilot-badge,
-.vaultpilot-note-panel-sticky-corner .vaultpilot-note-panel-control .vaultpilot-badge {
+.statuspilot-note-panel-sticky-corner .statuspilot-priority-panel .statuspilot-badge,
+.statuspilot-note-panel-sticky-corner .statuspilot-note-panel-control .statuspilot-badge {
 	background: transparent;
 	border: 0;
 	border-radius: 6px;
@@ -563,36 +563,36 @@ button.vaultpilot-badge-button:active {
 	white-space: nowrap;
 }
 
-.vaultpilot-note-panel-sticky-corner .vaultpilot-priority-panel .vaultpilot-badge {
-	color: color-mix(in srgb, var(--vaultpilot-priority-color) 82%, var(--text-normal));
+.statuspilot-note-panel-sticky-corner .statuspilot-priority-panel .statuspilot-badge {
+	color: color-mix(in srgb, var(--statuspilot-priority-color) 82%, var(--text-normal));
 }
 
-.vaultpilot-priority-panel .vaultpilot-badge.vaultpilot-priority,
-.vaultpilot-badge.vaultpilot-priority {
+.statuspilot-priority-panel .statuspilot-badge.statuspilot-priority,
+.statuspilot-badge.statuspilot-priority {
 	padding-left: 10px;
 }
 
 /* ─── Priority kicker & meter ─── */
 
-.vaultpilot-priority-kicker {
+.statuspilot-priority-kicker {
 	color: var(--text-faint);
 	font-size: var(--font-ui-smaller);
 	font-weight: 700;
 	line-height: 1.1;
 }
 
-.vaultpilot-priority-meter {
-	--vaultpilot-priority-segment-count: 4;
+.statuspilot-priority-meter {
+	--statuspilot-priority-segment-count: 4;
 	display: grid;
 	gap: 3px;
 	grid-template-columns: repeat(
-		var(--vaultpilot-priority-segment-count),
+		var(--statuspilot-priority-segment-count),
 		minmax(7px, 1fr)
 	);
 	width: 44px;
 }
 
-.vaultpilot-priority-segment {
+.statuspilot-priority-segment {
 	background: color-mix(in srgb, var(--background-modifier-border) 70%, transparent);
 	border-radius: 999px;
 	display: block;
@@ -601,19 +601,19 @@ button.vaultpilot-badge-button:active {
 	transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
-.vaultpilot-priority-segment.is-active {
-	background: var(--vaultpilot-priority-color);
+.statuspilot-priority-segment.is-active {
+	background: var(--statuspilot-priority-color);
 	box-shadow: 0 0 6px 0
 		color-mix(
 			in srgb,
-			var(--vaultpilot-priority-color) 30%,
+			var(--statuspilot-priority-color) 30%,
 			transparent
 		);
 }
 
 /* ─── Note panel control (inline pill) ─── */
 
-.vaultpilot-note-panel-control {
+.statuspilot-note-panel-control {
 	align-items: center;
 	background: color-mix(in srgb, var(--background-secondary) 70%, transparent);
 	border: 1px solid var(--background-modifier-border);
@@ -625,28 +625,28 @@ button.vaultpilot-badge-button:active {
 	transition: background 0.12s ease, border-color 0.12s ease;
 }
 
-.vaultpilot-note-panel-control:hover {
+.statuspilot-note-panel-control:hover {
 	background: var(--background-secondary);
 }
 
-.vaultpilot-note-panel-control label {
+.statuspilot-note-panel-control label {
 	line-height: 1;
 }
 
-.vaultpilot-note-panel-row {
+.statuspilot-note-panel-row {
 	align-items: center;
 	display: flex;
 }
 
 /* ─── Picker modal ─── */
 
-.vaultpilot-picker-list {
+.statuspilot-picker-list {
 	display: grid;
 	gap: 6px;
 	margin-top: 12px;
 }
 
-.vaultpilot-picker-option {
+.statuspilot-picker-option {
 	align-items: center;
 	border-radius: 8px;
 	display: flex;
@@ -658,13 +658,13 @@ button.vaultpilot-badge-button:active {
 
 /* ─── Settings ─── */
 
-.vaultpilot-settings-list {
+.statuspilot-settings-list {
 	display: grid;
 	gap: 8px;
 	margin: 8px 0 18px;
 }
 
-.vaultpilot-settings-option {
+.statuspilot-settings-option {
 	background: var(--background-secondary);
 	border: 1px solid var(--background-modifier-border);
 	border-radius: 10px;
@@ -672,11 +672,11 @@ button.vaultpilot-badge-button:active {
 	transition: border-color 0.12s ease;
 }
 
-.vaultpilot-settings-option:hover {
+.statuspilot-settings-option:hover {
 	border-color: color-mix(in srgb, var(--interactive-accent) 30%, var(--background-modifier-border));
 }
 
-.vaultpilot-settings-option .setting-item {
+.statuspilot-settings-option .setting-item {
 	border: 0;
 	padding: 8px 0;
 }
@@ -684,98 +684,98 @@ button.vaultpilot-badge-button:active {
 /* ─── Responsive ─── */
 
 @media (max-width: 1200px) {
-	.vaultpilot-dashboard {
+	.statuspilot-dashboard {
 		padding: 16px;
 	}
 
-	.vaultpilot-toolbar {
+	.statuspilot-toolbar {
 		grid-template-columns: repeat(3, minmax(140px, 1fr));
 	}
 }
 
 @media (max-width: 900px) {
-	.vaultpilot-dashboard {
+	.statuspilot-dashboard {
 		gap: 12px;
 		padding: 14px;
 	}
 
-	.vaultpilot-dashboard-header {
+	.statuspilot-dashboard-header {
 		align-items: flex-start;
 		flex-direction: column;
 		gap: 2px;
 	}
 
-	.vaultpilot-toolbar {
+	.statuspilot-toolbar {
 		gap: 8px;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
-	.vaultpilot-control.wide {
+	.statuspilot-control.wide {
 		grid-column: 1 / -1;
 		min-width: 0;
 	}
 
-	.vaultpilot-toolbar > .vaultpilot-icon-button,
-	.vaultpilot-search-button {
+	.statuspilot-toolbar > .statuspilot-icon-button,
+	.statuspilot-search-button {
 		align-self: end;
 		justify-self: start;
 	}
 
-	.vaultpilot-table {
+	.statuspilot-table {
 		min-width: 620px;
 	}
 
-	.vaultpilot-link-button {
+	.statuspilot-link-button {
 		max-width: 180px;
 	}
 }
 
 @media (max-width: 720px) {
-	.vaultpilot-dashboard {
+	.statuspilot-dashboard {
 		padding: 12px;
 	}
 
-	.vaultpilot-toolbar {
+	.statuspilot-toolbar {
 		grid-template-columns: 1fr;
 	}
 
-	.vaultpilot-toolbar > .vaultpilot-icon-button,
-	.vaultpilot-search-button {
+	.statuspilot-toolbar > .statuspilot-icon-button,
+	.statuspilot-search-button {
 		justify-self: end;
 	}
 
-	.vaultpilot-table-wrap {
+	.statuspilot-table-wrap {
 		background: transparent;
 		border: 0;
 		box-shadow: none;
 		overflow: visible;
 	}
 
-	.vaultpilot-table,
-	.vaultpilot-table thead,
-	.vaultpilot-table tbody,
-	.vaultpilot-table tr,
-	.vaultpilot-table td {
+	.statuspilot-table,
+	.statuspilot-table thead,
+	.statuspilot-table tbody,
+	.statuspilot-table tr,
+	.statuspilot-table td {
 		display: block;
 	}
 
-	.vaultpilot-table {
+	.statuspilot-table {
 		border-collapse: separate;
 		border-spacing: 0;
 		min-width: 0;
 		width: 100%;
 	}
 
-	.vaultpilot-table thead {
+	.statuspilot-table thead {
 		display: none;
 	}
 
-	.vaultpilot-table tbody {
+	.statuspilot-table tbody {
 		display: grid;
 		gap: 10px;
 	}
 
-	.vaultpilot-table tbody tr {
+	.statuspilot-table tbody tr {
 		background: var(--background-primary);
 		border: 1px solid var(--background-modifier-border);
 		border-radius: 10px;
@@ -786,12 +786,12 @@ button.vaultpilot-badge-button:active {
 		padding: 8px 10px;
 	}
 
-	.vaultpilot-table tbody tr:hover {
+	.statuspilot-table tbody tr:hover {
 		background: var(--background-primary);
 		border-color: color-mix(in srgb, var(--interactive-accent) 24%, var(--background-modifier-border));
 	}
 
-	.vaultpilot-table td {
+	.statuspilot-table td {
 		align-items: center;
 		border-bottom: 0;
 		display: flex;
@@ -801,12 +801,12 @@ button.vaultpilot-badge-button:active {
 		padding: 6px 0;
 	}
 
-	.vaultpilot-table td:first-child {
+	.statuspilot-table td:first-child {
 		border-bottom: 1px solid color-mix(in srgb, var(--background-modifier-border) 58%, transparent);
 		padding-bottom: 9px;
 	}
 
-	.vaultpilot-table td:nth-child(n + 2)::before {
+	.statuspilot-table td:nth-child(n + 2)::before {
 		color: var(--text-faint);
 		content: '';
 		flex: 0 0 auto;
@@ -815,92 +815,92 @@ button.vaultpilot-badge-button:active {
 		text-transform: uppercase;
 	}
 
-	.vaultpilot-table td:nth-child(2)::before {
+	.statuspilot-table td:nth-child(2)::before {
 		content: 'Status';
 	}
 
-	.vaultpilot-table td:nth-child(3)::before {
+	.statuspilot-table td:nth-child(3)::before {
 		content: 'Priority';
 	}
 
-	.vaultpilot-table td:nth-child(4)::before {
+	.statuspilot-table td:nth-child(4)::before {
 		content: 'Level';
 	}
 
-	.vaultpilot-table td:nth-child(5)::before {
+	.statuspilot-table td:nth-child(5)::before {
 		content: 'Actions';
 	}
 
-	.vaultpilot-link-button {
+	.statuspilot-link-button {
 		max-width: 100%;
 		padding-left: 0;
 		width: 100%;
 	}
 
-	.vaultpilot-actions-cell {
+	.statuspilot-actions-cell {
 		justify-content: space-between;
 	}
 
-	.vaultpilot-priority-panel {
+	.statuspilot-priority-panel {
 		min-height: 0;
 	}
 
-	.vaultpilot-note-panel-sticky-corner {
+	.statuspilot-note-panel-sticky-corner {
 		margin-right: 8px;
 		max-width: calc(100% - 16px);
 		right: 8px;
 		width: calc(100% - 16px);
 	}
 
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-note-panel-controls {
+	.statuspilot-note-panel-sticky-corner .statuspilot-note-panel-controls {
 		flex-wrap: wrap;
 	}
 
-	.vaultpilot-note-panel-top .vaultpilot-note-panel-controls {
+	.statuspilot-note-panel-top .statuspilot-note-panel-controls {
 		align-items: stretch;
 	}
 
-	.vaultpilot-note-panel-top .vaultpilot-note-panel-control {
+	.statuspilot-note-panel-top .statuspilot-note-panel-control {
 		justify-content: space-between;
 	}
 
-	.vaultpilot-note-panel-top .vaultpilot-priority-panel {
+	.statuspilot-note-panel-top .statuspilot-priority-panel {
 		grid-template-columns: minmax(0, 1fr) 44px;
 	}
 
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-badge,
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-priority-panel .vaultpilot-badge,
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-note-panel-control .vaultpilot-badge {
+	.statuspilot-note-panel-sticky-corner .statuspilot-badge,
+	.statuspilot-note-panel-sticky-corner .statuspilot-priority-panel .statuspilot-badge,
+	.statuspilot-note-panel-sticky-corner .statuspilot-note-panel-control .statuspilot-badge {
 		max-width: 112px;
 	}
 
-	.vaultpilot-cell-edit {
+	.statuspilot-cell-edit {
 		justify-content: flex-end;
 		min-width: 0;
 	}
 }
 
 @media (max-width: 480px) {
-	.vaultpilot-dashboard {
+	.statuspilot-dashboard {
 		padding: 10px;
 	}
 
-	.vaultpilot-dashboard-header h2 {
+	.statuspilot-dashboard-header h2 {
 		font-size: var(--font-ui-medium);
 	}
 
-	.vaultpilot-control input,
-	.vaultpilot-control select,
-	.vaultpilot-select {
+	.statuspilot-control input,
+	.statuspilot-control select,
+	.statuspilot-select {
 		height: 32px;
 	}
 
-	.vaultpilot-table tbody tr {
+	.statuspilot-table tbody tr {
 		border-radius: 8px;
 		padding: 7px 9px;
 	}
 
-	.vaultpilot-note-panel-sticky-corner {
+	.statuspilot-note-panel-sticky-corner {
 		margin-left: 6px;
 		margin-right: 6px;
 		max-width: calc(100% - 12px);
@@ -910,112 +910,112 @@ button.vaultpilot-badge-button:active {
 		width: calc(100% - 12px);
 	}
 
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-note-panel-controls {
+	.statuspilot-note-panel-sticky-corner .statuspilot-note-panel-controls {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 	}
 
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-priority-panel {
+	.statuspilot-note-panel-sticky-corner .statuspilot-priority-panel {
 		grid-column: 1 / -1;
 		justify-content: space-between;
 	}
 
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-note-panel-control {
+	.statuspilot-note-panel-sticky-corner .statuspilot-note-panel-control {
 		justify-content: center;
 	}
 
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-badge,
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-priority-panel .vaultpilot-badge,
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-note-panel-control .vaultpilot-badge {
+	.statuspilot-note-panel-sticky-corner .statuspilot-badge,
+	.statuspilot-note-panel-sticky-corner .statuspilot-priority-panel .statuspilot-badge,
+	.statuspilot-note-panel-sticky-corner .statuspilot-note-panel-control .statuspilot-badge {
 		max-width: 100%;
 		width: 100%;
 	}
 
-	.vaultpilot-note-panel-top .vaultpilot-note-panel-controls {
+	.statuspilot-note-panel-top .statuspilot-note-panel-controls {
 		display: grid;
 		grid-template-columns: 1fr;
 	}
 
-	.vaultpilot-note-panel-top .vaultpilot-note-panel-control,
-	.vaultpilot-note-panel-top .vaultpilot-priority-panel {
+	.statuspilot-note-panel-top .statuspilot-note-panel-control,
+	.statuspilot-note-panel-top .statuspilot-priority-panel {
 		width: 100%;
 	}
 }
 
 @container (max-width: 900px) {
-	.vaultpilot-dashboard-header {
+	.statuspilot-dashboard-header {
 		align-items: flex-start;
 		flex-direction: column;
 		gap: 2px;
 	}
 
-	.vaultpilot-toolbar {
+	.statuspilot-toolbar {
 		gap: 8px;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
-	.vaultpilot-control.wide {
+	.statuspilot-control.wide {
 		grid-column: 1 / -1;
 		min-width: 0;
 	}
 
-	.vaultpilot-toolbar > .vaultpilot-icon-button,
-	.vaultpilot-search-button {
+	.statuspilot-toolbar > .statuspilot-icon-button,
+	.statuspilot-search-button {
 		align-self: end;
 		justify-self: start;
 	}
 
-	.vaultpilot-table {
+	.statuspilot-table {
 		min-width: 620px;
 	}
 
-	.vaultpilot-link-button {
+	.statuspilot-link-button {
 		max-width: 180px;
 	}
 }
 
 @container (max-width: 720px) {
-	.vaultpilot-toolbar {
+	.statuspilot-toolbar {
 		grid-template-columns: 1fr;
 	}
 
-	.vaultpilot-toolbar > .vaultpilot-icon-button,
-	.vaultpilot-search-button {
+	.statuspilot-toolbar > .statuspilot-icon-button,
+	.statuspilot-search-button {
 		justify-self: end;
 	}
 
-	.vaultpilot-table-wrap {
+	.statuspilot-table-wrap {
 		background: transparent;
 		border: 0;
 		box-shadow: none;
 		overflow: visible;
 	}
 
-	.vaultpilot-table,
-	.vaultpilot-table thead,
-	.vaultpilot-table tbody,
-	.vaultpilot-table tr,
-	.vaultpilot-table td {
+	.statuspilot-table,
+	.statuspilot-table thead,
+	.statuspilot-table tbody,
+	.statuspilot-table tr,
+	.statuspilot-table td {
 		display: block;
 	}
 
-	.vaultpilot-table {
+	.statuspilot-table {
 		border-collapse: separate;
 		border-spacing: 0;
 		min-width: 0;
 		width: 100%;
 	}
 
-	.vaultpilot-table thead {
+	.statuspilot-table thead {
 		display: none;
 	}
 
-	.vaultpilot-table tbody {
+	.statuspilot-table tbody {
 		display: grid;
 		gap: 10px;
 	}
 
-	.vaultpilot-table tbody tr {
+	.statuspilot-table tbody tr {
 		background: var(--background-primary);
 		border: 1px solid var(--background-modifier-border);
 		border-radius: 10px;
@@ -1026,12 +1026,12 @@ button.vaultpilot-badge-button:active {
 		padding: 8px 10px;
 	}
 
-	.vaultpilot-table tbody tr:hover {
+	.statuspilot-table tbody tr:hover {
 		background: var(--background-primary);
 		border-color: color-mix(in srgb, var(--interactive-accent) 24%, var(--background-modifier-border));
 	}
 
-	.vaultpilot-table td {
+	.statuspilot-table td {
 		align-items: center;
 		border-bottom: 0;
 		display: flex;
@@ -1041,12 +1041,12 @@ button.vaultpilot-badge-button:active {
 		padding: 6px 0;
 	}
 
-	.vaultpilot-table td:first-child {
+	.statuspilot-table td:first-child {
 		border-bottom: 1px solid color-mix(in srgb, var(--background-modifier-border) 58%, transparent);
 		padding-bottom: 9px;
 	}
 
-	.vaultpilot-table td:nth-child(n + 2)::before {
+	.statuspilot-table td:nth-child(n + 2)::before {
 		color: var(--text-faint);
 		content: '';
 		flex: 0 0 auto;
@@ -1055,78 +1055,78 @@ button.vaultpilot-badge-button:active {
 		text-transform: uppercase;
 	}
 
-	.vaultpilot-table td:nth-child(2)::before {
+	.statuspilot-table td:nth-child(2)::before {
 		content: 'Status';
 	}
 
-	.vaultpilot-table td:nth-child(3)::before {
+	.statuspilot-table td:nth-child(3)::before {
 		content: 'Priority';
 	}
 
-	.vaultpilot-table td:nth-child(4)::before {
+	.statuspilot-table td:nth-child(4)::before {
 		content: 'Level';
 	}
 
-	.vaultpilot-table td:nth-child(5)::before {
+	.statuspilot-table td:nth-child(5)::before {
 		content: 'Actions';
 	}
 
-	.vaultpilot-link-button {
+	.statuspilot-link-button {
 		max-width: 100%;
 		padding-left: 0;
 		width: 100%;
 	}
 
-	.vaultpilot-actions-cell {
+	.statuspilot-actions-cell {
 		justify-content: space-between;
 	}
 
-	.vaultpilot-cell-edit {
+	.statuspilot-cell-edit {
 		justify-content: flex-end;
 		min-width: 0;
 	}
 }
 
 @container (max-width: 480px) {
-	.vaultpilot-table tbody tr {
+	.statuspilot-table tbody tr {
 		border-radius: 8px;
 		padding: 7px 9px;
 	}
 
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-note-panel-controls {
+	.statuspilot-note-panel-sticky-corner .statuspilot-note-panel-controls {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 	}
 
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-priority-panel {
+	.statuspilot-note-panel-sticky-corner .statuspilot-priority-panel {
 		grid-column: 1 / -1;
 		justify-content: space-between;
 	}
 
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-note-panel-control {
+	.statuspilot-note-panel-sticky-corner .statuspilot-note-panel-control {
 		justify-content: center;
 	}
 
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-badge,
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-priority-panel .vaultpilot-badge,
-	.vaultpilot-note-panel-sticky-corner .vaultpilot-note-panel-control .vaultpilot-badge {
+	.statuspilot-note-panel-sticky-corner .statuspilot-badge,
+	.statuspilot-note-panel-sticky-corner .statuspilot-priority-panel .statuspilot-badge,
+	.statuspilot-note-panel-sticky-corner .statuspilot-note-panel-control .statuspilot-badge {
 		max-width: 100%;
 		width: 100%;
 	}
 
-	.vaultpilot-note-panel-top .vaultpilot-note-panel-controls {
+	.statuspilot-note-panel-top .statuspilot-note-panel-controls {
 		display: grid;
 		grid-template-columns: 1fr;
 	}
 
-	.vaultpilot-note-panel-top .vaultpilot-note-panel-control,
-	.vaultpilot-note-panel-top .vaultpilot-priority-panel {
+	.statuspilot-note-panel-top .statuspilot-note-panel-control,
+	.statuspilot-note-panel-top .statuspilot-priority-panel {
 		width: 100%;
 	}
 }
 
 @media (max-width: 720px) {
-	.vaultpilot-dashboard .vaultpilot-table-wrap {
+	.statuspilot-dashboard .statuspilot-table-wrap {
 		background: var(--background-primary);
 		border: 1px solid var(--background-modifier-border);
 		border-radius: 8px;
@@ -1134,7 +1134,7 @@ button.vaultpilot-badge-button:active {
 		overflow: auto;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table {
+	.statuspilot-dashboard .statuspilot-table {
 		border-collapse: collapse;
 		border-spacing: 0;
 		display: table;
@@ -1143,15 +1143,15 @@ button.vaultpilot-badge-button:active {
 		width: 100%;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table thead {
+	.statuspilot-dashboard .statuspilot-table thead {
 		display: table-header-group;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table tbody {
+	.statuspilot-dashboard .statuspilot-table tbody {
 		display: table-row-group;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table tr {
+	.statuspilot-dashboard .statuspilot-table tr {
 		background: transparent;
 		border: 0;
 		border-radius: 0;
@@ -1160,42 +1160,42 @@ button.vaultpilot-badge-button:active {
 		padding: 0;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table th,
-	.vaultpilot-dashboard .vaultpilot-table td {
+	.statuspilot-dashboard .statuspilot-table th,
+	.statuspilot-dashboard .statuspilot-table td {
 		border-bottom: 1px solid color-mix(in srgb, var(--background-modifier-border) 60%, transparent);
 		display: table-cell;
 		padding: 4px 6px;
 		vertical-align: middle;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table td::before {
+	.statuspilot-dashboard .statuspilot-table td::before {
 		content: none;
 		display: none;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table th:nth-child(1),
-	.vaultpilot-dashboard .vaultpilot-table td:nth-child(1) {
+	.statuspilot-dashboard .statuspilot-table th:nth-child(1),
+	.statuspilot-dashboard .statuspilot-table td:nth-child(1) {
 		width: 34%;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table th:nth-child(2),
-	.vaultpilot-dashboard .vaultpilot-table td:nth-child(2) {
+	.statuspilot-dashboard .statuspilot-table th:nth-child(2),
+	.statuspilot-dashboard .statuspilot-table td:nth-child(2) {
 		width: 20%;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table th:nth-child(3),
-	.vaultpilot-dashboard .vaultpilot-table td:nth-child(3),
-	.vaultpilot-dashboard .vaultpilot-table th:nth-child(4),
-	.vaultpilot-dashboard .vaultpilot-table td:nth-child(4) {
+	.statuspilot-dashboard .statuspilot-table th:nth-child(3),
+	.statuspilot-dashboard .statuspilot-table td:nth-child(3),
+	.statuspilot-dashboard .statuspilot-table th:nth-child(4),
+	.statuspilot-dashboard .statuspilot-table td:nth-child(4) {
 		width: 17%;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table th:nth-child(5),
-	.vaultpilot-dashboard .vaultpilot-table td:nth-child(5) {
+	.statuspilot-dashboard .statuspilot-table th:nth-child(5),
+	.statuspilot-dashboard .statuspilot-table td:nth-child(5) {
 		width: 12%;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-link-button {
+	.statuspilot-dashboard .statuspilot-link-button {
 		max-width: 100%;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -1205,7 +1205,7 @@ button.vaultpilot-badge-button:active {
 }
 
 @container (max-width: 720px) {
-	.vaultpilot-dashboard .vaultpilot-table-wrap {
+	.statuspilot-dashboard .statuspilot-table-wrap {
 		background: var(--background-primary);
 		border: 1px solid var(--background-modifier-border);
 		border-radius: 8px;
@@ -1213,7 +1213,7 @@ button.vaultpilot-badge-button:active {
 		overflow: auto;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table {
+	.statuspilot-dashboard .statuspilot-table {
 		border-collapse: collapse;
 		border-spacing: 0;
 		display: table;
@@ -1222,15 +1222,15 @@ button.vaultpilot-badge-button:active {
 		width: 100%;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table thead {
+	.statuspilot-dashboard .statuspilot-table thead {
 		display: table-header-group;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table tbody {
+	.statuspilot-dashboard .statuspilot-table tbody {
 		display: table-row-group;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table tr {
+	.statuspilot-dashboard .statuspilot-table tr {
 		background: transparent;
 		border: 0;
 		border-radius: 0;
@@ -1239,42 +1239,42 @@ button.vaultpilot-badge-button:active {
 		padding: 0;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table th,
-	.vaultpilot-dashboard .vaultpilot-table td {
+	.statuspilot-dashboard .statuspilot-table th,
+	.statuspilot-dashboard .statuspilot-table td {
 		border-bottom: 1px solid color-mix(in srgb, var(--background-modifier-border) 60%, transparent);
 		display: table-cell;
 		padding: 4px 6px;
 		vertical-align: middle;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table td::before {
+	.statuspilot-dashboard .statuspilot-table td::before {
 		content: none;
 		display: none;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table th:nth-child(1),
-	.vaultpilot-dashboard .vaultpilot-table td:nth-child(1) {
+	.statuspilot-dashboard .statuspilot-table th:nth-child(1),
+	.statuspilot-dashboard .statuspilot-table td:nth-child(1) {
 		width: 34%;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table th:nth-child(2),
-	.vaultpilot-dashboard .vaultpilot-table td:nth-child(2) {
+	.statuspilot-dashboard .statuspilot-table th:nth-child(2),
+	.statuspilot-dashboard .statuspilot-table td:nth-child(2) {
 		width: 20%;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table th:nth-child(3),
-	.vaultpilot-dashboard .vaultpilot-table td:nth-child(3),
-	.vaultpilot-dashboard .vaultpilot-table th:nth-child(4),
-	.vaultpilot-dashboard .vaultpilot-table td:nth-child(4) {
+	.statuspilot-dashboard .statuspilot-table th:nth-child(3),
+	.statuspilot-dashboard .statuspilot-table td:nth-child(3),
+	.statuspilot-dashboard .statuspilot-table th:nth-child(4),
+	.statuspilot-dashboard .statuspilot-table td:nth-child(4) {
 		width: 17%;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-table th:nth-child(5),
-	.vaultpilot-dashboard .vaultpilot-table td:nth-child(5) {
+	.statuspilot-dashboard .statuspilot-table th:nth-child(5),
+	.statuspilot-dashboard .statuspilot-table td:nth-child(5) {
 		width: 12%;
 	}
 
-	.vaultpilot-dashboard .vaultpilot-link-button {
+	.statuspilot-dashboard .statuspilot-link-button {
 		max-width: 100%;
 		overflow: hidden;
 		text-overflow: ellipsis;
