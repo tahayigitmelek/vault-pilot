@@ -1,4 +1,4 @@
-# StatusPilot
+# Status Pilot
 
 StatusPilot is an Obsidian plugin for managing note workflow metadata directly from YAML frontmatter. It scans your Markdown notes for status, priority, and level fields, providing a dedicated dashboard for filtering, sorting, and quickly updating your workflow states.
 

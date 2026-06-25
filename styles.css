@@ -487,13 +487,14 @@ body.statuspilot-badges-enabled .statuspilot-badge {
 
 /* ─── Badge button ─── */
 
-button.statuspilot-badge-button {
+body .app-container button.statuspilot-badge-button,
+body button.statuspilot-badge-button {
 	appearance: none;
 	align-items: center;
-	background: transparent !important;
-	border: 0 !important;
+	background: transparent;
+	border: 0;
 	border-radius: 6px;
-	box-shadow: none !important;
+	box-shadow: none;
 	color: inherit;
 	cursor: pointer;
 	display: inline-flex;
@@ -509,12 +510,16 @@ button.statuspilot-badge-button {
 	width: auto;
 }
 
-button.statuspilot-badge-button:hover,
-button.statuspilot-badge-button:focus,
-button.statuspilot-badge-button:focus-visible,
-button.statuspilot-badge-button:active {
-	background: transparent !important;
-	box-shadow: none !important;
+body .app-container button.statuspilot-badge-button:hover,
+body .app-container button.statuspilot-badge-button:focus,
+body .app-container button.statuspilot-badge-button:focus-visible,
+body .app-container button.statuspilot-badge-button:active,
+body button.statuspilot-badge-button:hover,
+body button.statuspilot-badge-button:focus,
+body button.statuspilot-badge-button:focus-visible,
+body button.statuspilot-badge-button:active {
+	background: transparent;
+	box-shadow: none;
 	outline: none;
 }
 

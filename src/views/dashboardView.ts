@@ -57,8 +57,7 @@ export class DashboardView extends ItemView {
 	}
 
 	getDisplayText(): string {
-		// eslint-disable-next-line obsidianmd/ui/sentence-case
-		return 'StatusPilot dashboard';
+		return 'Status Pilot dashboard';
 	}
 
 	getIcon(): string {

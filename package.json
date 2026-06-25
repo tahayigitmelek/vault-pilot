@@ -1,6 +1,6 @@
 {
 	"name": "status-pilot",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Configurable status, priority, and level dashboard for Obsidian notes.",
 	"main": "main.js",
 	"type": "module",
