@@ -4,8 +4,6 @@ export const METADATA_FIELDS = ['status', 'priority', 'level'] as const;
 
 export type MetadataKind = (typeof METADATA_FIELDS)[number];
 
-export type NotePanelPlacement = 'top' | 'sticky-corner';
-
 export interface MetadataOption {
 	id: string;
 	value: string;
@@ -17,7 +15,6 @@ export interface MetadataOption {
 export interface StatusPilotSettings {
 	enableDashboard: boolean;
 	enableNotePanel: boolean;
-	notePanelPlacement: NotePanelPlacement;
 	enableBadgeStyling: boolean;
 	statusOptions: MetadataOption[];
 	priorityOptions: MetadataOption[];

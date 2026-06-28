@@ -3,7 +3,6 @@ import type StatusPilotPlugin from './main';
 import type {
 	MetadataKind,
 	MetadataOption,
-	NotePanelPlacement,
 	StatusPilotSettings,
 } from './types';
 
@@ -31,11 +30,6 @@ const FALLBACK_OPTION: MetadataOption = {
 	label: 'Not set',
 	color: '#8a8f98',
 	icon: '○',
-};
-
-const NOTE_PANEL_PLACEMENTS: Record<NotePanelPlacement, string> = {
-	top: 'Top of note',
-	'sticky-corner': 'Sticky top right',
 };
 
 export const DEFAULT_STATUS_OPTIONS: MetadataOption[] = [
@@ -155,7 +149,6 @@ export const DEFAULT_LEVEL_OPTIONS: MetadataOption[] = [
 export const DEFAULT_SETTINGS: StatusPilotSettings = {
 	enableDashboard: true,
 	enableNotePanel: true,
-	notePanelPlacement: 'sticky-corner',
 	enableBadgeStyling: true,
 	statusOptions: cloneOptions(DEFAULT_STATUS_OPTIONS),
 	priorityOptions: cloneOptions(DEFAULT_PRIORITY_OPTIONS),
@@ -185,7 +178,6 @@ export function normalizeSettings(
 	return {
 		enableDashboard: data?.enableDashboard ?? DEFAULT_SETTINGS.enableDashboard,
 		enableNotePanel: data?.enableNotePanel ?? DEFAULT_SETTINGS.enableNotePanel,
-		notePanelPlacement: normalizeNotePanelPlacement(data?.notePanelPlacement),
 		enableBadgeStyling:
 			data?.enableBadgeStyling ?? DEFAULT_SETTINGS.enableBadgeStyling,
 		statusOptions,
@@ -300,12 +292,6 @@ function normalizeFolderList(value: string[] | undefined): string[] {
 	return value.map(cleanFolder).filter((folder) => folder.length > 0);
 }
 
-function normalizeNotePanelPlacement(value: unknown): NotePanelPlacement {
-	return value === 'top' || value === 'sticky-corner'
-		? value
-		: DEFAULT_SETTINGS.notePanelPlacement;
-}
-
 function cleanFolder(folder: string): string {
 	return folder.trim().replace(/^\/+|\/+$/g, '');
 }
@@ -361,25 +347,6 @@ export class StatusPilotSettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					}),
 			);
-
-		new Setting(containerEl)
-			.setName('Note header panel position')
-			.setDesc(
-				'Keep note controls at the top of the note or pin them to the top right while scrolling.',
-			)
-			.addDropdown((dropdown) => {
-				for (const [value, label] of Object.entries(NOTE_PANEL_PLACEMENTS)) {
-					dropdown.addOption(value, label);
-				}
-
-				dropdown
-					.setValue(this.plugin.settings.notePanelPlacement)
-					.onChange(async (value) => {
-						this.plugin.settings.notePanelPlacement =
-							normalizeNotePanelPlacement(value);
-						await this.plugin.saveSettings();
-					});
-			});
 
 		new Setting(containerEl)
 			.setName('Enable badge styling')

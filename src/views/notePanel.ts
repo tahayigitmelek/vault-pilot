@@ -62,7 +62,7 @@ function refreshInlineNotePanels(plugin: StatusPilotPlugin): void {
 
 		const panelEl = ensureInlinePanel(view);
 		seenPanels.add(panelEl);
-		applyPanelPlacement(plugin, panelEl);
+		applyPanelPlacement(panelEl);
 		renderNotePanel(plugin, panelEl, file);
 		syncPropertiesVisibility(view.contentEl);
 	}
@@ -95,13 +95,9 @@ function ensureInlinePanel(view: MarkdownView): HTMLElement {
 	return panelEl;
 }
 
-function applyPanelPlacement(
-	plugin: StatusPilotPlugin,
-	panelEl: HTMLElement,
-): void {
-	const sticky = plugin.settings.notePanelPlacement === 'sticky-corner';
-	panelEl.classList.toggle('statuspilot-note-panel-sticky-corner', sticky);
-	panelEl.classList.toggle('statuspilot-note-panel-top', !sticky);
+function applyPanelPlacement(panelEl: HTMLElement): void {
+	panelEl.classList.remove('statuspilot-note-panel-sticky-corner');
+	panelEl.classList.add('statuspilot-note-panel-top');
 }
 
 function getPanelHost(contentEl: HTMLElement): HTMLElement {
